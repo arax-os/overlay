@@ -15,14 +15,15 @@ KEYWORDS="~amd64 ~x86"
 IUSE="alsa oss pulseaudio v4l"
 
 DEPEND="
-    >=x11-libs/cairo-1.8.6
+	dev-lang/squeak
+	>=x11-libs/cairo-1.8.6
 	>=x11-libs/pango-1.20.5
 	>=dev-libs/glib-2.20.1:2
 	v4l? ( >=media-libs/libv4l-0.5.8 )
 "
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/aghves"
+S="${WORKDIR}/${P}.src"
 ABI="x86"
 
 if   use alsa;       then squeak_sound_plugin="ALSA"
@@ -52,27 +53,18 @@ src_install() {
 	local datadir="/usr/share/${PN}"
 	local icondir="/usr/share/icons/hicolor"
 	dodir "${libdir}" "${datadir}"
-	cp -r Aghves.* Plugins App/* "${D}${libdir}"
+	cp -r Aghves.* Plugins "${D}${libdir}"
+	chmod a+w ${D}${libdir}/Aghves.*
 	cp -r Help locale Media Projects "${D}${datadir}"
 	doman src/man/*
 	insinto /usr/share/mime/packages
-	doins src/aghves.xml
-	(
-		cd src/icons
-		for res in *; do
-			insinto "${icondir}/${res}/apps"
-			doins "${res}"/aghves*.png
-			insinto "${icondir}/${res}/mimetypes"
-			newins "${res}/gnome-mime-application-x-aghves-project.png" mime-application-x-aghves-project.png
-		done
-	)
 	install_runner
 	make_desktop_entry aghves Aghves aghves "Education;Development" "MimeType=application/x-aghves-project"
 }
 
 install_runner() {
 	local tmpexe=$(emktemp)
-	cp -r ${WORKDIR}/aghves/aghves "${tmpexe}"
+	cp -r ${WORKDIR}/${P}.src/aghves "${tmpexe}"
 	sed -i 's/\.\/Aghves.image/\/usr\/games\/aghves\/Aghves.image/g' ${tmpexe}
 	chmod go+rx "${tmpexe}"
 	newbin "${tmpexe}" "${PN}" || die
