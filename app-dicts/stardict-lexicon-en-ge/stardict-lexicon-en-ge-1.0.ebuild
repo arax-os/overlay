@@ -7,7 +7,7 @@ inherit stardict
 
 DESCRIPTION="English-Georgian dictionary"
 HOMEPAGE="http://dictionaries.arnet.am/"
-SRC_URI="http://dictionaries.arnet.am/en-ge.zip"
+SRC_URI="http://dictionaries.arnet.am/lexicon-en-ge.zip"
 
 LICENSE="GPL"
 SLOT="0"
