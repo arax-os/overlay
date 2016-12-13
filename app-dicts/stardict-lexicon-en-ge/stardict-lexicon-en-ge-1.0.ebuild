@@ -17,4 +17,4 @@ IUSE=""
 DEPEND="app-arch/unzip"
 RDEPEND=""
 
-S=${WORKDIR}/EngGe
+S=${WORKDIR}/en-ge
