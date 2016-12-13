@@ -17,5 +17,5 @@ IUSE=""
 DEPEND="app-arch/unzip"
 RDEPEND=""
 
-S=${WORKDIR}/EngHy
+S=${WORKDIR}/armdicto
 
