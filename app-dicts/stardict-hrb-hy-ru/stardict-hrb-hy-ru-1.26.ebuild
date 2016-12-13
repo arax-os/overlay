@@ -8,7 +8,7 @@ inherit stardict
 
 DESCRIPTION="Armenian-Russion dictionary"
 HOMEPAGE="http://dictionaries.arnet.am/"
-SRC_URI="http://dictionaries.arnet.am/hy-ru-1.0.zip"
+SRC_URI="http://dictionaries.arnet.am/hrb-hy-ru-1.26.zip"
 
 LICENSE="GPL"
 SLOT="0"
@@ -18,4 +18,4 @@ IUSE=""
 DEPEND="app-arch/unzip"
 RDEPEND=""
 
-S=${WORKDIR}/HyRu
+S=${WORKDIR}/hrb-hy-ru
